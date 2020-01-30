@@ -12,7 +12,6 @@ namespace MioSito.Models
         public string Indirizzo { get; set; } = "Via...";
         public string Città { get; set; } = "Babilonia";
         public int Telefono { get; set; } = 3333;
-        public string Immagine { get; set; } = "~/wwwroot/m.jpg";
-
+        public string Immagine { get; set; } = "m.jpg";
     }
 }
