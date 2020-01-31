@@ -12,9 +12,13 @@ namespace MioSito.Controllers
     {
         public IActionResult Index(Info i)
         {
-
             return View(i);
         }
 
+        public IActionResult Pass(Info i)
+        {
+            
+            return View(i);
+        }
     }
 }

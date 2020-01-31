@@ -1,20 +1,17 @@
-﻿@using MioSito.Models
+﻿ @using MioSito.Models
 @model Info
+
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Iscriviti</h1>
 
-<form asp-controller="Info" asp-action="Index">
+<form asp-controller="Info">
     <div class="form-group">
         Email:  <input asp-for="Email" /> <br />
         Password: <input asp-for="Password" /><br />
-        <button type="submit">Invia</button>
+        <button type="submit" asp-action="Index">Invia</button>
+        <button type="submit" asp-action="Pass">Scopri la tua Password </button>
     </div>
-
-
-    <div>Questa è la tua Email @Model.Email</div>
-    <div>Questa è la Password @Model.Password</div>
-
 </form>

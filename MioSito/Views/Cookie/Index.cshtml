@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Save Cookies</h1>
+<form asp-controller="Cookie" asp-action="WriteCookie" method="post">
+    <select name="cookiename">
+        <option value="username">UserName</option>
+        <option value="Password">Password</option>
+    </select>
+    <input type ="text" name="cookievalue" />
+    <input type ="checkbox" name="IsPersistent" value="true" />
+    <input type="submit" value="Add Cookie" />
+</form>
+<p><a asp-action="ReadCookie" asp-controller="Cookie">Read Cookies</a></p>
+    <p>@ViewBag.message</p>
