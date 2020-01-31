@@ -5,21 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MioSito.Models;
 
+
 namespace MioSito.Controllers
 {
     public class InfoController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(Info i)
         {
-           
 
-            return View();
-
+            return View(i);
         }
 
-        public IActionResult data(Info i)
-        {
-            return View();
-        }
     }
 }
