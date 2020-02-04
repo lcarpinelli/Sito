@@ -50,7 +50,7 @@ namespace MioSito
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Cookie}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
