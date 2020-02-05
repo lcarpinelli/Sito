@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MioSito.Models;
+using MioSito.Models.Services.Application;
 
 namespace MioSito.Controllers
 {
     public class ContattiController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(ContattiService contatto)
         {
-            Contatti Contatto= new Contatti();
-
-            return View(Contatto);
+            return View(contatto);
         }
     }
 }

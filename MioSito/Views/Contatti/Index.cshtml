@@ -1,24 +1,25 @@
-﻿@model MioSito.Models.Contatti;
-
+﻿
+@model MioSito.Models.Services.Application.ContattiService;
 
 @{
-    ViewData["Title"] = "Contatti";
+    ViewBag.Title = "Contatti";
 }
-<h1>Contatti</h1>
+<h1>@ViewBag.Title</h1>
 
 <div>
     <h2>Nome</h2>
-    @Model.Nome
+    @Model.GetContatto().Nome
     <h2>Cognome</h2>
-    @Model.Cognome
+    @Model.GetContatto().Cognome
     <h2>Città</h2>
-    @Model.Città
+    @Model.GetContatto().Città
     <h2>Indirizzo</h2>
-    @Model.Indirizzo
+    @Model.GetContatto().Indirizzo
     <h2>Telefono</h2>
-    @Model.Telefono
+    @Model.GetContatto().Telefono
     <h2>Immagine</h2>
-    <img src="@Url.Content(Model.Immagine)" height="150">
+    <img src="@Url.Content(@Model.GetContatto().Immagine)" height="150">
+
 
 </div>
 
