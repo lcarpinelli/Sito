@@ -49,9 +49,12 @@ namespace MioSito
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseMiddleware<RequestCounterService>();
+
             app.UseRouting();
 
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {
