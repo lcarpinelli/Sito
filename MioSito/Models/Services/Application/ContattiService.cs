@@ -1,4 +1,5 @@
-﻿using MioSito.Models.ViewModels;
+﻿using MioSito.Models.Interface;
+using MioSito.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace MioSito.Models.Services.Application
 {
-    public class ContattiService
+    public class ContattiService : IContattiService
     {
+        public ContattiService()
+        {
+
+        }
         public ContattiViewModel GetContatto()
         {
             ContattiViewModel Contatto = new ContattiViewModel
@@ -20,7 +25,6 @@ namespace MioSito.Models.Services.Application
                 Immagine = "m.jpg"
             };
             return Contatto;
-            
         }
     }
 }

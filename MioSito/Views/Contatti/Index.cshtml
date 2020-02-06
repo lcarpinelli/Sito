@@ -1,6 +1,5 @@
 ﻿
-@model MioSito.Models.Services.Application.ContattiService;
-
+@model MioSito.Models.ViewModels.ContattiViewModel;
 @{
     ViewBag.Title = "Contatti";
 }
@@ -8,17 +7,17 @@
 
 <div>
     <h2>Nome</h2>
-    @Model.GetContatto().Nome
+    @Model.Nome
     <h2>Cognome</h2>
-    @Model.GetContatto().Cognome
+    @Model.Cognome
     <h2>Città</h2>
-    @Model.GetContatto().Città
+    @Model.Città
     <h2>Indirizzo</h2>
-    @Model.GetContatto().Indirizzo
+    @Model.Indirizzo
     <h2>Telefono</h2>
-    @Model.GetContatto().Telefono
+    @Model.Telefono
     <h2>Immagine</h2>
-    <img src="@Url.Content(@Model.GetContatto().Immagine)" height="150">
+    <img src="@Url.Content(@Model.Immagine)" height="150">
 
 
 </div>

@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MioSito.Models.Interface;
+using MioSito.Models.Services.Application;
+using MioSito.Models.Services.Application.CatalogoService;
 
 namespace MioSito
 {
@@ -15,6 +18,7 @@ namespace MioSito
     {
         public Startup(IConfiguration configuration)
         {
+
             Configuration = configuration;
         }
 
@@ -22,8 +26,11 @@ namespace MioSito
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {           
             services.AddControllersWithViews();
+            services.AddTransient<IContattiService, ContattiService>();
+            services.AddTransient<ICatalogoService, CatalogoService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
