@@ -7,6 +7,7 @@ using MioSito.Models;
 using MioSito.Models.Interface;
 using MioSito.Models.Services.Application;
 using MioSito.Models.Services.Application.CatalogoService;
+using MioSito.Models.ViewModels;
 
 namespace MioSito.Controllers
 {
@@ -21,14 +22,18 @@ namespace MioSito.Controllers
 
         public IActionResult Index()
         {
-            var catalogoService = _catalogoService.GetList();
+            var catalogoService = _catalogoService.GetCatalogo();
             
             return View(catalogoService);
         }
 
-        public IActionResult Cata()
+
+        public IActionResult Cata(string id)
         {
-            return View();
+
+            var catalogoService = _catalogoService.GetDettagli(id);
+
+            return View(catalogoService);
         }
 
 

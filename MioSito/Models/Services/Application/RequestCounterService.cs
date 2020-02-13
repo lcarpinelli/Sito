@@ -22,9 +22,9 @@ namespace MioSito.Models.Services.Application
 
         public async Task Invoke(HttpContext httpContext)
         {
+               
                 Interlocked.Increment(ref count);
-                await _next(httpContext);
-            
+                await _next(httpContext);  
         }
     }
 

@@ -1,6 +1,10 @@
 ﻿using MioSito.Models.Interface;
+using MioSito.Models.Services.Infastructure;
+using MioSito.Models.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,11 +12,44 @@ namespace MioSito.Models.Services.Application.CatalogoService
 {
     public class CatalogoService:ICatalogoService
     {
-        public List<string> GetList()
+        //public List<string> GetList()
+        //{
+        //    List<string> list = new List<string>() { "PRODOTTO 1", "PRODOTTO 2", "PRODOTTO 3", "PRODOTTO 4" };
+        //    return list;
+        //}
+
+        private readonly IDataBaseConnector db;
+        public CatalogoService(IDataBaseConnector dbConnector)
         {
-            List<string> list = new List<string>() { "PRODOTTO 1", "PRODOTTO 2", "PRODOTTO 3", "PRODOTTO 4" };
-            return list;
+            this.db = dbConnector;
         }
-        
+
+        public List<CatalogoViewModel> GetCatalogo()
+        {
+            string query = $"SELECT Id, Title, ImagePath, Author, Rating, CurrentPrice_Currency, CurrentPrice_Amount FROM Courses";
+            DataSet dataSet = db.Query(query);
+            DataTable dataTable = dataSet.Tables[0];
+            List<CatalogoViewModel> catalogoList = new List<CatalogoViewModel>();
+            foreach (DataRow catalogoRow in dataTable.Rows)
+            {
+                CatalogoViewModel CatalogoViewModel = CatalogoViewModel.FromDbToView(catalogoRow);
+                catalogoList.Add(CatalogoViewModel);
+            }
+            return catalogoList; 
+        }
+
+        public CatalogoViewModel GetDettagli(string id)
+        {
+            string query = $"SELECT Id, Title, ImagePath, Author, Rating, CurrentPrice_Currency, CurrentPrice_Amount FROM Courses WHERE Id={id}";
+            DataSet dataSet = db.Query(query);
+            DataTable dataTable = dataSet.Tables[0];
+            CatalogoViewModel dettaglio = new CatalogoViewModel();
+            foreach(DataRow riga in dataTable.Rows)
+            {
+                dettaglio = CatalogoViewModel.FromDbToView(riga);
+            }
+
+            return dettaglio;
+        }
     }
 }

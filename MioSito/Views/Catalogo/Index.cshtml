@@ -3,27 +3,28 @@
     ViewData["Title"] = "Catalogo";
 }
 
-<h1>Catalogo</h1>
+@using MioSito.Models.ViewModels
+
+@model List<CatalogoViewModel>
+
+<h2>Catalogo corsi</h2>
 <br />
+    @*<form asp-controller="Catalogo" asp-action="Cata" method="post">*@
+        @foreach (CatalogoViewModel x in Model)
+        {
 
-@foreach (var x in Model)
-{
-    <div class="row mb-3">
-
-        <div class="col-md-4 ">
-            @x
-        </div>
-
-        <div class="col-md-4 ">
-            PREZZO
-        </div>
-
-        <form asp-controller="Catalogo" asp-action="Cata">
-            <div class="col-md-4 ">
-                <button type="submit"> DETTAGLI </button>
+            <div class="row md-3 divMax">
+                <div class="col-md-3 divImg"><img src="@x.ImagePath" class="immagine" height="100" /> </div>
+                <div class="col-md-3">@x.Title</div>
+                @*<div class="col-md-3">@x.Rating</div>*@
+                <div class="col-md-3">@x.Valuta @x.CurrentPrice.Value</div>
+                <div class="col-md-3">
+                    <a class="btn btn-outline-primary"
+                       asp-controller="Catalogo"
+                       asp-action="Cata"
+                       asp-route-id="@x.Id">Dettagli</a>
+                </div>
+                @*<button type="submit" value="@x.Id">Dettaglio</button>*@
             </div>
-        </form>
-
-    </div>
-}
-
+        }
+    @*</form>*@
