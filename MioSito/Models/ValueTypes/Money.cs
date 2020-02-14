@@ -1,10 +1,10 @@
-﻿using Store.Models.Enums;
+﻿using MioSito.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Store.Models.ValueTypes
+namespace MioSito.Models.ValueTypes
 {
     public class Money
     {

@@ -30,6 +30,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Catalogo" asp-action="Index">Catalogo</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="AddCourse" asp-action="Index">Aggiungi</a>
+                        </li>
 
                     </ul>
                 </div>
@@ -37,6 +40,9 @@
         </nav>
     </header>
     <div class="container">
+
+        <div id="alertDiv"></div>
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -48,8 +54,38 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+
+    <script>
+$(function () {
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.PopupMessage) && ViewBag.PopupMessage == "request_saved")
+        {
+@: $("#alertDiv").append('<div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert"><strong>Bene!</strong> Hai Caricato i dati nel database nel modo corretto!!</div>');
+
+@: $("#success-alert").fadeTo(3000, 500).slideUp(500, function() {
+@:   $("#success-alert").slideUp(500);
+@: });
+    }
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.PopupMessage) && ViewBag.PopupMessage == "request_failed")
+        {
+@: $("#alertDiv").append('<div id="fail-alert" class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Attention!</strong></div>');
+
+@: $("#fail-alert").fadeTo(3000, 500).slideUp(500, function(){
+@:   $("#fail-alert").slideUp(500);
+@: });
+    }
+});
+    </script>
+
+
+
 </body>
 </html>
+
+

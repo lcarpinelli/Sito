@@ -12,12 +12,6 @@ namespace MioSito.Models.Services.Application.CatalogoService
 {
     public class CatalogoService:ICatalogoService
     {
-        //public List<string> GetList()
-        //{
-        //    List<string> list = new List<string>() { "PRODOTTO 1", "PRODOTTO 2", "PRODOTTO 3", "PRODOTTO 4" };
-        //    return list;
-        //}
-
         private readonly IDataBaseConnector db;
         public CatalogoService(IDataBaseConnector dbConnector)
         {
@@ -26,7 +20,7 @@ namespace MioSito.Models.Services.Application.CatalogoService
 
         public List<CatalogoViewModel> GetCatalogo()
         {
-            string query = $"SELECT Id, Title, ImagePath, Author, Rating, CurrentPrice_Currency, CurrentPrice_Amount FROM Courses";
+            string query = $"SELECT Id, Title, ImagePath, Author, Rating, FullPrice_Amount, FullPrice_Currency, CurrentPrice_Currency, CurrentPrice_Amount FROM Courses";
             DataSet dataSet = db.Query(query);
             DataTable dataTable = dataSet.Tables[0];
             List<CatalogoViewModel> catalogoList = new List<CatalogoViewModel>();
@@ -40,7 +34,7 @@ namespace MioSito.Models.Services.Application.CatalogoService
 
         public CatalogoViewModel GetDettagli(string id)
         {
-            string query = $"SELECT Id, Title, ImagePath, Author, Rating, CurrentPrice_Currency, CurrentPrice_Amount FROM Courses WHERE Id={id}";
+            string query = $"SELECT Id, Title, ImagePath, Author, Rating, FullPrice_Amount, FullPrice_Currency, CurrentPrice_Currency, CurrentPrice_Amount FROM Courses WHERE Id={id}";
             DataSet dataSet = db.Query(query);
             DataTable dataTable = dataSet.Tables[0];
             CatalogoViewModel dettaglio = new CatalogoViewModel();

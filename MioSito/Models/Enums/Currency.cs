@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Store.Models.Enums
+namespace MioSito.Models.Enums
 {  
         public enum Currency
         {

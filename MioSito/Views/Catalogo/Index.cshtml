@@ -7,24 +7,23 @@
 
 @model List<CatalogoViewModel>
 
-<h2>Catalogo corsi</h2>
+<h1>Catalogo corsi</h1>
 <br />
-    @*<form asp-controller="Catalogo" asp-action="Cata" method="post">*@
+
         @foreach (CatalogoViewModel x in Model)
         {
 
             <div class="row md-3 divMax">
                 <div class="col-md-3 divImg"><img src="@x.ImagePath" class="immagine" height="100" /> </div>
                 <div class="col-md-3">@x.Title</div>
-                @*<div class="col-md-3">@x.Rating</div>*@
-                <div class="col-md-3">@x.Valuta @x.CurrentPrice.Value</div>
+                <div class="col-md-3">@x.CurrentPrice</div>
                 <div class="col-md-3">
                     <a class="btn btn-outline-primary"
                        asp-controller="Catalogo"
                        asp-action="Cata"
                        asp-route-id="@x.Id">Dettagli</a>
                 </div>
-                @*<button type="submit" value="@x.Id">Dettaglio</button>*@
+
             </div>
         }
-    @*</form>*@
+

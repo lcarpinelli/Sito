@@ -31,6 +31,7 @@ namespace MioSito
             services.AddControllersWithViews();
             services.AddTransient<IContattiService, ContattiService>();
             services.AddTransient<ICatalogoService, CatalogoService>();
+            services.AddTransient<IAddCourse, AddCourse>();
             services.AddTransient<IDataBaseConnector, SqlServerDatabaseConnector>();
 
         }
