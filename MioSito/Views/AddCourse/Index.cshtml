@@ -3,58 +3,76 @@
     ViewData["Title"] = "Index";
 }
 
-@using MioSito.Models.ViewModels 
+@using MioSito.Models.ViewModels
 @using MioSito.Models.Enums
 
 @model AddCourseViewModel
 
 <h1>Aggiungi Corso</h1>
 
-<form asp-controller="AddCourse" asp-action="Save" enctype="multipart/form-data" method="post">
+
+<form asp-controller="AddCourse" asp-action="Save" enctype="application/x-www-form-urlencoded" method="post">
     <div class="form-row">
         <div class="form-group col-md-5">
             <label>Titolo</label>
-            <input type="text" class="form-control" placeholder="Inserisci Titolo" name="Title">
+            <input required type="text" class="form-control" placeholder="Inserisci Titolo" name="Title">
             <span asp-validation-for="Title" />
         </div>
         <div class="form-group col-md-5">
-                <label>Autore</label>
-                <input required type="text" class="form-control" placeholder="Inserisci Autore" name="Author">
-            </div>
-            <div class="form-group col-md-2">
-                <label>Rating</label>
-                <input required type="text" class="form-control" placeholder="Inserisci da 1 a 5" name="Rating">
-            </div>
+            <label>Autore</label>
+            <input required type="text" class="form-control" placeholder="Inserisci Autore" name="Author">
+            <span asp-validation-for="Author" />
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-8">
-                <label>Prezzo Pieno</label>
-                <input required type="text" class="form-control" placeholder="Inserisci Prezzo Pieno" name="FullPrice">
-            </div>
-            <div class="form-group col-md-4">
-                <label>valuta</label>
-                <select class="form-control"  name="valutafullprice">
-                        <option>@Currency.EUR</option>
-                        <option>@Currency.USD</option>
-                        <option>@Currency.GBP</option>
-                </select>
-            </div>
+        <div class="form-group col-md-2">
+            <label>Rating</label>
+            <input required type="text" class="form-control" placeholder="Da 1 a 5" name="Rating">
+            <span asp-validation-for="Rating" />
         </div>
-        <div class="form-row">
-            <div class="form-group col-md-8">
-                <label>Prezzo Scontato</label>
-                <input required type="text" class="form-control" placeholder="Inserisci Prezzo Scontato" name="CurrentPrice">
-            </div>
-            <div class="form-group col-md-4">
-                <label>Valuta</label>
-                <select class="form-control" name="ValutaCurrentPrice">
-                        <option>@Currency.EUR</option>
-                        <option>@Currency.GBP</option>
-                        <option>@Currency.USD</option>
-                </select>
-            </div>
-             <div asp-validation-summary="All"></div>
+        <div class="form-group col-md-12">
+            <label>Descrizione (Facoltativo)</label>
+            <input type="text" class="form-control" placeholder="Inserisci Descrizione" name="Description" >
+            <span asp-validation-for="Description" />
         </div>
-        <button type="submit" class="btn btn-primary">Invia al database</button>
-       
-</form >
+        <div class="form-group col-md-6">
+            <label>Email (Facoltativo)</label>
+            <input type="text" class="form-control" placeholder="Inserisci Email" name="Email">
+            <span asp-validation-for="Email" />
+        </div>
+        <div class="form-group col-md-6">
+            <label>Immagine (Facoltativo)</label>
+            <input type="file" class="form-control-file" name="ImagePath">
+            <span asp-validation-for="ImagePath" />
+        </div>
+        <div class="form-group col-md-8">
+            <label>Prezzo Pieno</label>
+            <input required type="text" class="form-control" placeholder="Inserisci Prezzo Pieno" name="FullPrice">
+            <span asp-validation-for="FullPrice" />
+        </div>
+        <div class="form-group col-md-4">
+            <label>valuta</label>
+            <select class="form-control" name="valutafullprice">
+                <option>@Currency.EUR</option>
+                <option>@Currency.USD</option>
+                <option>@Currency.GBP</option>
+            </select>
+        </div>
+        <div class="form-group col-md-8">
+            <label>Prezzo Scontato</label>
+            <input required type="text" class="form-control" placeholder="Inserisci Prezzo Scontato" name="CurrentPrice">
+            <span asp-validation-for="CurrentPrice" />
+        </div>
+        <div class="form-group col-md-4">
+            <label>Valuta</label>
+            <select class="form-control" name="ValutaCurrentPrice">
+                <option>@Currency.EUR</option>
+                <option>@Currency.GBP</option>
+                <option>@Currency.USD</option>
+            </select>
+        </div>
+        <div asp-validation-summary="All"></div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Invia al database</button>
+
+</form>

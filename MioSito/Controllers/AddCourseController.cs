@@ -18,7 +18,7 @@ namespace MioSito.Controllers
         }
         public IActionResult Index()
         {
-            
+
             return View();
         }
         public IActionResult Save([FromForm]AddCourseViewModel course)
@@ -39,8 +39,6 @@ namespace MioSito.Controllers
                 ViewBag.PopupMessage = "request_failed";
                 return View("Index");
             }
-
-
         }
     }
 }

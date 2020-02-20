@@ -37,20 +37,25 @@ namespace MioSito.Models.Services.Infastructure
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand($"INSERT INTO Courses(Title, Author, Rating, FullPrice_Amount, FullPrice_Currency, CurrentPrice_Amount, CurrentPrice_Currency) VALUES (@Title, @Author, @Rating, @FullPrice, @ValutaFullPrice, @CurrentPrice, @ValutaCurrentPrice)", conn))
+                using (SqlCommand cmd = new SqlCommand($"INSERT INTO Courses(Title, Description, ImagePath, Author, Email, Rating, FullPrice_Amount, FullPrice_Currency, CurrentPrice_Amount, CurrentPrice_Currency) VALUES (@Title, @Description, @ImagePath, @Author, @Email, @Rating, @FullPrice, @ValutaFullPrice, @CurrentPrice, @ValutaCurrentPrice)", conn))
                 {
-                    
+                    string img = $"/Courses/{course.ImagePath}";
                     cmd.Parameters.AddWithValue("@Title",course.Title);
+                    cmd.Parameters.AddWithValue("@Description", course.Description);
+                    cmd.Parameters.AddWithValue("@ImagePath",img);
                     cmd.Parameters.AddWithValue("@Author", course.Author);
+                    cmd.Parameters.AddWithValue("@Email", course.Email);
                     cmd.Parameters.AddWithValue("@Rating", course.Rating);
                     cmd.Parameters.AddWithValue("@FullPrice", course.FullPrice);
                     cmd.Parameters.AddWithValue("@ValutaFullPrice", course.ValutaFullPrice);
                     cmd.Parameters.AddWithValue("@CurrentPrice", course.CurrentPrice);
                     cmd.Parameters.AddWithValue("@ValutaCurrentPrice", course.ValutaCurrentPrice);
 
+                    
                     int p = cmd.ExecuteNonQuery();
-
                     return true;
+
+                    
 
                     
                 }
