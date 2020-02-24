@@ -10,5 +10,7 @@ namespace MioSito.Models.Interface
     {
         public List<CatalogoViewModel> GetCatalogo();
         public CatalogoViewModel GetDettagli(string id);
+        public Task<List<CatalogoViewModel>> GetCoursesAsync();
+        public Task<CatalogoViewModel> GetCourseAsync(int id);
     }
 }

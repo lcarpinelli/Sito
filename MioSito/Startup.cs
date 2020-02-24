@@ -10,8 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MioSito.Models.Interface;
 using MioSito.Models.Services.Application;
-using MioSito.Models.Services.Application.CatalogoService;
 using MioSito.Models.Services.Infastructure;
+using MioSito.Models.Services.Infrastructure;
 
 namespace MioSito
 {
@@ -30,9 +30,13 @@ namespace MioSito
         {           
             services.AddControllersWithViews();
             services.AddTransient<IContattiService, ContattiService>();
-            services.AddTransient<ICatalogoService, CatalogoService>();
-            services.AddTransient<IAddCourse, AddCourse>();
-            services.AddTransient<IDataBaseConnector, SqlServerDatabaseConnector>();
+            //services.AddTransient<IAddCourse, AddCourse>();
+            //services.AddTransient<ICatalogoService, CatalogoService>();
+            //services.AddTransient<IDataBaseConnector, SqlServerDatabaseConnector>();
+            
+            
+            services.AddTransient<ICatalogoService, EfCoreCourseService>();
+            services.AddTransient<MyCourseDbContext>();
 
         }
 

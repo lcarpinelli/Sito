@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using MioSito.Models;
 using MioSito.Models.Interface;
 using MioSito.Models.Services.Application;
-using MioSito.Models.Services.Application.CatalogoService;
 using MioSito.Models.ViewModels;
 
 namespace MioSito.Controllers
@@ -20,18 +19,18 @@ namespace MioSito.Controllers
             this._catalogoService = catalogoService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            var catalogoService = _catalogoService.GetCatalogo();
+            var catalogoService = await _catalogoService.GetCoursesAsync();
             
             return View(catalogoService);
         }
 
 
-        public IActionResult Cata(string id)
+        public async Task<IActionResult> CataAsync(int id)
         {
 
-            var catalogoService = _catalogoService.GetDettagli(id);
+            var catalogoService = await _catalogoService.GetCourseAsync(id);
 
             return View(catalogoService);
         }

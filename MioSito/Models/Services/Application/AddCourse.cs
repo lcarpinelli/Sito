@@ -19,7 +19,7 @@ namespace MioSito.Models.Services.Application
 
         public bool SetData(AddCourseViewModel addCourse)
         {          
-            db.Insert(addCourse);
+            db.Insert(addCourse);          
             return true;
         }
     }

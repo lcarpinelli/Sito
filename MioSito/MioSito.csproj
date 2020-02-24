@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\AddCourseController.cs" />
+    <Compile Remove="Models\Interface\IAddCourse.cs" />
+    <Compile Remove="Models\Services\Application\AddCourse.cs" />
+    <Compile Remove="Models\Services\Application\CatalogoService.cs" />
+    <Compile Remove="Models\Services\Infastructure\SqlServerDatabaseConnector.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\m.jpg" />
   </ItemGroup>
 

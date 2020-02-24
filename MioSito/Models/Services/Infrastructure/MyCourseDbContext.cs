@@ -48,28 +48,32 @@ namespace MioSito.Models.Services.Infrastructure
                 entity.Property(e => e.Author)
                     .IsRequired()
                     .HasColumnType("text");
-            #region
-            //entity.Property(e => e.CurrentPriceAmount)
-            //    .HasColumnName("CurrentPrice_Amount")
-            //    .HasColumnType("money");
 
-            //entity.Property(e => e.CurrentPriceCurrency)
-            //    .IsRequired()
-            //    .HasColumnName("CurrentPrice_Currency")
-            //    .HasColumnType("text")
-            //    .HasDefaultValueSql("('EUR')");
-            #endregion
+                #region
+                //entity.Property(e => e.CurrentPriceAmount)
+                //    .HasColumnName("CurrentPrice_Amount")
+                //    .HasColumnType("money");
 
-            entity.OwnsOne(course => course.CurrentPrice, builder => {
+                //entity.Property(e => e.CurrentPriceCurrency)
+                //    .IsRequired()
+                //    .HasColumnName("CurrentPrice_Currency")
+                //    .HasColumnType("text")
+                //    .HasDefaultValueSql("('EUR')");
+                #endregion
+
+                entity.OwnsOne(course => course.CurrentPrice, builder =>
+                {
                     builder.Property(money => money.Currency)
                     .HasConversion<string>()
                     .HasColumnName("CurrentPrice_Currency");
                     builder.Property(money => money.Amount).HasColumnName("CurrentPrice_Amount");
+                });
 
                 entity.Property(e => e.Description).HasColumnType("text");
 
                 entity.Property(e => e.Email).HasColumnType("text");
-            #region
+
+                #region
                 //entity.Property(e => e.FullPriceAmount)
                 //    .HasColumnName("FullPrice_Amount")
                 //    .HasColumnType("money");
@@ -80,42 +84,45 @@ namespace MioSito.Models.Services.Infrastructure
                 //    .HasColumnType("text")
                 //    .HasDefaultValueSql("('EUR')");
                 #endregion
-                entity.OwnsOne(course => course.FullPrice, builder => {
-                        builder.Property(money => money.Currency).HasConversion<string>();
+                entity.OwnsOne(course => course.FullPrice, builder =>
+                {
+                    builder.Property(money => money.Currency).HasConversion<string>();
+                });
 
                 entity.Property(e => e.ImagePath).HasColumnType("text");
 
                 entity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("text");
 
                 entity.HasMany(course => course.Lessons)
-                .WithOne(lesson => lesson.Course)
-                .HasForeignKey(lesson => lesson.CourseId);
+                    .WithOne(lesson => lesson.Course)
+                    .HasForeignKey(lesson => lesson.CourseId);
+                
             });
 
-            modelBuilder.Entity<Lessons>(entity =>
-            {
-                entity.Property(e => e.Description).HasColumnType("text");
+                modelBuilder.Entity<Lessons>(entity =>
+                {
+                    entity.Property(e => e.Description).HasColumnType("text");
 
-                entity.Property(e => e.Duration)
-                    .IsRequired()
-                    .HasColumnType("text")
-                    .HasDefaultValueSql("('00:00:00')");
+                    entity.Property(e => e.Duration)
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasDefaultValueSql("('00:00:00')");
 
-                entity.Property(e => e.Title)
-                    .IsRequired()
-                    .HasColumnType("text");
+                    entity.Property(e => e.Title)
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                entity.HasOne(d => d.Course)
-                    .WithMany(p => p.Lessons)
-                    .HasForeignKey(d => d.CourseId)
-                    .HasConstraintName("FK__Lessons__CourseI__5070F446");
-            });
+                    entity.HasOne(d => d.Course)
+                        .WithMany(p => p.Lessons)
+                        .HasForeignKey(d => d.CourseId)
+                        .HasConstraintName("FK__Lessons__CourseI__5070F446");
+                });
 
 
-            OnModelCreatingPartial(modelBuilder);
-        }
+                OnModelCreatingPartial(modelBuilder);
+            }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
